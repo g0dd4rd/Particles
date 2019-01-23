@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <title>Particles</title>
+</head>
+<body>
+<canvas id='canvas' width='600' height='400'></canvas>
+<script src='particles.js'></script>
+<script language="JavaScript">
+var can = document.getElementById('canvas');
+var c = can.getContext('2d');
+
+function mainLoop() {
+  updateGame();
+  updateBackground();
+  updateNotes();
+
+  checkCollisions();
+
+  drawBackground(c);
+  drawNotes(c);
+  //drawPlayer(c)
+  drawOverlay(c);
+}
+
+// =========== background ============
+function drawBackground(c) {
+  c.fillStyle = background.color;
+  c.fillRect(0, 0, can.width, can.height);
+}
+
+// =========== enemies ===============
+function drawNotes(c) {
+  var note;
+  c.font = '10pt Arial';
+  for(var i in semitones) {
+    note = semitones[i];
+    //c.fillText(note.note, note.x, note.y);
+    c.beginPath();
+    c.arc(note.x, note.y, 10, 0, 2 * Math.PI, false);
+    c.fillStyle = note.color;
+    c.fill();
+  }
+}
+
+// =========== player ================
+function drawPlayer(c) {
+  c.fillStyle = player.color;
+  c.fillRect(player.x, player.y, player.width, player.height);
+}
+
+// =========== overlay ===============
+function drawOverlay(c) {
+  c.font = "Bold 10pt Arial";
+  c.fillStyle = 'white';
+  c.fillText(overlay.counter, 10, 20);
+
+  if(game.state == 'start') {
+    c.fillText(overlay.subtitle, 190, 250);
+    c.font = "Bold 40pt Arial";
+    c.fillText(overlay.title, 30, 200);
+  }
+
+  if(game.state == 'over') {
+    c.font = "Bold 40pt Arial";
+    c.fillText(overlay.title, 30, 200);
+  }
+  
+  if(game.state == 'won') {
+    c.font = 'Bold 40pt Arial';
+    c.fillText(overlay.title, 50, 200);
+  }
+}
+
+checkEvents();
+setInterval(mainLoop, 1000 / 30);
+</script>
+</body>
+</html>
+
