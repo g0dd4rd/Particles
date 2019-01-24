@@ -107,6 +107,10 @@ function updateNotes() {
   }
 }
 
+function explode(note) {
+  note.color = 'white';
+}
+
 // =========== check for collisions ===
 function checkCollisions() {
   if(player.state == 'dead') return;
@@ -115,8 +119,8 @@ function checkCollisions() {
   for(var i = 0; i < semitones.length; i++) {
     note = semitones[i];
     if(collided(note, player)) {
-      note.color = 'white';
-      note.y = 400;
+      explode(note);
+      //note.y = 400;
       overlay.counter++;
     }
   }
