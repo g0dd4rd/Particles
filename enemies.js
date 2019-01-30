@@ -41,5 +41,10 @@ function updateNotes() {
 
 function explode(note) {
   note.color = 'white';
+  var north = {
+    x: note.x, y: note.y,
+    width: 2, height: 2,
+    color: note.color};
+  north.y--;
 }
 
