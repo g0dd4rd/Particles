@@ -30,8 +30,7 @@ function checkCollisions() {
   for(var i = 0; i < semitones.length; i++) {
     note = semitones[i];
     if(collided(note, player)) {
-      note.color = 'white';
-      note.y = 400;
+      explode(note);
       overlay.counter++;
     }
   }
