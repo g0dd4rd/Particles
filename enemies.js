@@ -38,3 +38,8 @@ function updateNotes() {
     });
   }
 }
+
+function explode(note) {
+  note.color = 'white';
+}
+
