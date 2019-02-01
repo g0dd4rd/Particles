@@ -1,17 +1,22 @@
 // ============ Events ========================
 function checkEvents() {
-  attachEvent(document, 'keydown', function(e) {
+  attachEvent(document, 'keydown', e => {
     keyboard[e.keyCode] = true;
   });
 
-  attachEvent(document, 'keyup', function(e) {
+  attachEvent(document, 'keyup', e => {
     keyboard[e.keyCode] = false;
   });
 
-  attachEvent(document, 'mousedown', function(e) {
+  attachEvent(document, 'mousedown', e => {
     console.log('mouse down event');
     player.x = e.pageX; console.log('mouse x: '+ e.pageX);
     player.y = e.pageY; console.log('mouse y: '+ e.pageY);
+  });
+
+  attachEvent(document, 'mousemove', e => {
+    console.log('mouse x: '+ e.pageX);
+    console.log('mouse y: '+ e.pageY);
   });
 }
 
